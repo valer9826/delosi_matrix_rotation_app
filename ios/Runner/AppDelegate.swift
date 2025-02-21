@@ -15,8 +15,10 @@ import Flutter
             if call.method == "showToast" {
                 if let args = call.arguments as? [String: Any], let message = args["message"] as? String {
                     self.showToast(message: message)
+                    result(nil)
+                } else {
+                    result(FlutterError(code: "INVALID_ARGUMENT", message: "Missing message", details: nil))
                 }
-                result(nil)
             } else {
                 result(FlutterMethodNotImplemented)
             }
@@ -27,12 +29,16 @@ import Flutter
 
     private func showToast(message: String) {
         DispatchQueue.main.async {
+            guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
+                print("Error: No se pudo obtener rootViewController")
+                return
+            }
+
             let toast = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             toast.view.alpha = 0.6
             toast.view.layer.cornerRadius = 15
 
-            let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-            rootViewController?.present(toast, animated: true)
+            rootViewController.present(toast, animated: true)
 
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                 toast.dismiss(animated: true)

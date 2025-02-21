@@ -25,7 +25,6 @@ void main() {
       ),
     );
 
-    //Verifica que la pantalla contiene exactamente un botón "Rotar Matriz"
     expect(find.widgetWithText(ElevatedButton, 'Rotar Matriz'), findsOneWidget);
   });
 }
