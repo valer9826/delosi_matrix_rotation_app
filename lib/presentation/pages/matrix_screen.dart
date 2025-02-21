@@ -28,7 +28,6 @@ class MatrixScreenState extends State<MatrixScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-
                 TextField(
                   controller: _controller,
                   decoration: InputDecoration(
@@ -45,7 +44,6 @@ class MatrixScreenState extends State<MatrixScreen> {
                 ),
                 SizedBox(height: 10),
 
-
                 ElevatedButton(
                   onPressed: () {
                     List<List<int>>? matrix = parseInput(_controller.text);
@@ -61,12 +59,13 @@ class MatrixScreenState extends State<MatrixScreen> {
                   },
                   child: Text("Rotar Matriz"),
                 ),
-
                 SizedBox(height: 20),
 
+                //matriz original
                 if (provider.inputMatrix != null)
                   buildMatrix("Matriz Original", provider.inputMatrix!.values),
 
+                //matriz rotada
                 if (provider.matrix != null)
                   buildMatrix("Matriz Rotada", provider.matrix!.values),
 
@@ -118,23 +117,32 @@ class MatrixScreenState extends State<MatrixScreen> {
   Widget buildMatrix(String title, List<List<int>> matrix) {
     return Column(
       children: [
-        Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+        Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
         SizedBox(height: 10),
-        Column(
-          children: matrix.map((row) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: row.map((cell) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    cell.toString(),
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                );
-              }).toList(),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: matrix[0].length,
+            childAspectRatio: 1.0,
+          ),
+          itemCount: matrix.length * matrix[0].length,
+          itemBuilder: (context, index) {
+            int row = index ~/ matrix[0].length;
+            int col = index % matrix[0].length;
+            return Container(
+              margin: EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                matrix[row][col].toString(),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             );
-          }).toList(),
+          },
         ),
       ],
     );
