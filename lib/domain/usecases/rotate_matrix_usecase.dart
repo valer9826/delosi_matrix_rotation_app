@@ -1,12 +1,5 @@
-import 'package:delosi_matrix_rotation_app/domain/entities/matrix.dart';
-import '../repositories/matrix_repository.dart';
+import '../entities/matrix.dart';
 
-class RotateMatrixUseCase {
-  final MatrixRepository repository;
-
-  RotateMatrixUseCase(this.repository);
-
-  Future<Matrix> execute(Matrix matrix) {
-    return repository.rotateMatrix(matrix);
-  }
+abstract class RotateMatrixUseCase {
+  Future<Matrix> execute(Matrix matrix);
 }
