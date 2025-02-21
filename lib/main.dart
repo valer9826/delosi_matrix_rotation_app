@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'config/routes/app_routes.dart';
-import 'core/di/service_locator.dart'; // 🔹 Importamos el Service Locator
+import 'core/di/service_locator.dart';
 import 'presentation/state/matrix_provider.dart';
 
 void main() {
