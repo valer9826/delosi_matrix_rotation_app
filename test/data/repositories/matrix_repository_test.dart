@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:delosi_matrix_rotation_app/data/repositories/matrix_repository_impl.dart';
 import 'package:delosi_matrix_rotation_app/domain/repositories/matrix_repository.dart';
 import 'package:delosi_matrix_rotation_app/domain/entities/matrix.dart';
 
@@ -8,11 +7,9 @@ import '../../helpers/test_helper.mocks.dart';
 
 void main() {
   late MatrixRepository repository;
-  late MatrixRepositoryImpl repositoryImpl;
 
   setUp(() {
     repository = MockMatrixRepository();
-    repositoryImpl = MatrixRepositoryImpl();
   });
 
   group('MatrixRepositoryImpl - rotateMatrix', () {

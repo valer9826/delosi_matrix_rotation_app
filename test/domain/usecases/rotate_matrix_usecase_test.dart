@@ -7,12 +7,12 @@ import 'package:mockito/mockito.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
-  late RotateMatrixUseCase useCase; // 🔹 Referencia a la interfaz
+  late RotateMatrixUseCase useCase;
   late MockMatrixRepository repository;
 
   setUp(() {
     repository = MockMatrixRepository();
-    useCase = RotateMatrixUseCaseImpl(repository); // 🔹 Instanciamos la implementación
+    useCase = RotateMatrixUseCaseImpl(repository);
   });
 
   group('RotateMatrixUseCase - execute', () {
