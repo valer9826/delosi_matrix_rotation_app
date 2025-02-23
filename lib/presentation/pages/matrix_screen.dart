@@ -7,10 +7,10 @@ class MatrixScreen extends StatefulWidget {
   const MatrixScreen({super.key});
 
   @override
-  MatrixScreenState createState() => MatrixScreenState();
+  _MatrixScreenState createState() => _MatrixScreenState();
 }
 
-class MatrixScreenState extends State<MatrixScreen> {
+class _MatrixScreenState extends State<MatrixScreen> {
   final TextEditingController _controller = TextEditingController();
   String? _errorMessage;
 

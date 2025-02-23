@@ -4,8 +4,7 @@ class MatrixModel extends Matrix {
   MatrixModel(super.values);
 
   factory MatrixModel.fromJson(List<dynamic> json) {
-    List<List<int>> values =
-    json.map((row) => List<int>.from(row)).toList();
+    List<List<int>> values = json.map((row) => List<int>.from(row)).toList();
     return MatrixModel(values);
   }
 
